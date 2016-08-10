@@ -250,7 +250,8 @@ class BeautifulSoup(Tag):
     def __getstate__(self):
         # Frequently a tree builder can't be pickled.
         d = dict(self.__dict__)
-        if 'builder' in d and not self.builder.picklable:
+#        if 'builder' in d and not self.builder.picklable:
+        if 'builder' in d and not hasattr(self.builder, 'picklable'):
             d['builder'] = None
         return d
 
